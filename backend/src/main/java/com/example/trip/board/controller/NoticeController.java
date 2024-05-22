@@ -1,6 +1,8 @@
 package com.example.trip.board.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,16 +29,17 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nservice;
 
-	@GetMapping()
-	public ResponseEntity<List<NoticeDTO>> getList() {
-		try {
-			List<NoticeDTO> posts = nservice.getList();
-			return ResponseEntity.ok(posts);
-		}
-		catch (Exception e) {
-			return ResponseEntity.status(500).body(null);
-		}
-	}
+    @GetMapping("/list")
+    public Map<String, Object> list(@RequestParam(defaultValue = "1") int page) {
+        List<NoticeDTO> notices = nservice.getNoticeList(page);
+        Map<String, Object> pageInfo = nservice.getPaginationInfo(page);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("notices", notices);
+        response.put("pageInfo", pageInfo);
+
+        return response;
+    }
 
 	// 공지사항 자세히 보기
 	@GetMapping("/{selectOne}")

@@ -14,31 +14,22 @@
 
 	<select id="getList" resultType="NoticeDTO">
 		select *
-		from
-		notice
+		from notice
 	</select>
 
-	<select id="showContent" resultType="NoticeDTO"
-		parameterType="int">
-		SELECT * FROM Notice WHERE
-		notice_id = #{noticeId}
+	<select id="showContent" resultType="NoticeDTO" parameterType="int">
+		SELECT * FROM Notice WHERE notice_id = #{noticeId}
 	</select>
 
 	<insert id="writeNotice" parameterType="NoticeDTO">
-		INSERT INTO Notice
-		(notice_title, content, user_id)
-		VALUES
-		( #{noticeTitle},
-		#{content},
-		#{userId})
+		INSERT INTO Notice (notice_title, content, user_id)
+		VALUES (#{noticeTitle}, #{content}, #{userId})
 	</insert>
 
 	<update id="updateNotice" parameterType="NoticeDTO">
 		UPDATE Notice
-		SET
-		notice_img = #{noticeImg}, notice_title = #{noticeTitle}, content =
-		#{content}
-		WHERE notice_id = #{notice_id}
+		SET notice_img = #{noticeImg}, notice_title = #{noticeTitle}, content = #{content}
+		WHERE notice_id = #{noticeId}
 	</update>
 
 	<update id="incrementViewCount" parameterType="int">
@@ -49,8 +40,17 @@
 
 	<delete id="deleteNotice" parameterType="int">
 		DELETE FROM Notice
-		WHERE
-		notice_id = #{notice_id}
+		WHERE notice_id = #{noticeId}
 	</delete>
-</mapper>
 
+	<select id="getNoticeList" resultType="NoticeDTO">
+		SELECT * FROM notice
+		ORDER BY write_date DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*) FROM notice
+	</select>
+
+</mapper>
