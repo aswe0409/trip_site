@@ -10,12 +10,11 @@ import com.example.trip.board.dto.NoticeDTO;
 @Mapper
 public interface NoticeDAO {
 
-    public List<NoticeDTO> getList(); // 공지사항 목록 전체 가져오기
+	public List<NoticeDTO> getList(); // 공지사항 목록 전체 가져오기
 
 	public List<NoticeDTO> getListOrderDate(); // 공지사항 최근5개 가져오기
 
 	public NoticeDTO showContent(int noticeId); // ID를 직접 받아 처리
-
 
     public int writeNotice(NoticeDTO notice); // 공지사항 글 쓰기
 
@@ -23,11 +22,9 @@ public interface NoticeDAO {
 
     public int incrementViewCount(int noticeId); // 조회수 증가
 
-    public int deleteNotice(int noticeId); // 공지사항 삭제하기
-
     public List<NoticeDTO> getNoticeList(@Param("limit") int limit, @Param("offset") int offset); // 페이징 처리된 공지사항 목록 가져오기
 
     public int selectTotalCount(); // 전체 공지사항 수 조회
+
+	public int deleteNotice(NoticeDTO notice); // 공지사항 삭제하기
 }
-
-

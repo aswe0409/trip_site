@@ -12,23 +12,13 @@
 		<result column="read_count" property="readCount" />
 	</resultMap>
 
-	<select id="getList" resultMap="noticeInfo">
+	<select id="getList" resultMap="noticeInfo"> 
 		select *
-		from notice
-	</select>
-
-	<select id="showContent" resultType="NoticeDTO" parameterType="int">
-		SELECT * FROM Notice WHERE notice_id = #{noticeId}
-	</select>
-
-	<insert id="writeNotice" parameterType="NoticeDTO">
-		INSERT INTO Notice (notice_title, content, user_id)
-		VALUES (#{noticeTitle}, #{content}, #{userId})
 		from
 		notice
 		order by write_date desc
 	</select>
-	<select id="getListOrderDate" resultMap="noticeInfo">
+	<select id="getListOrderDate" resultMap="noticeInfo"> 
 		select *
 		from
 		notice
@@ -38,7 +28,7 @@
 	<select id="showContent" resultMap="noticeInfo"
 		parameterType="int">
 		SELECT * FROM Notice WHERE
-		notice_id = #{noticeId}
+		notice_id = #{noticeId};
 	</select>
 
 	<insert id="writeNotice" parameterType="NoticeDTO">
@@ -52,7 +42,9 @@
 
 	<update id="updateNotice" parameterType="NoticeDTO">
 		UPDATE Notice
-		SET notice_img = #{noticeImg}, notice_title = #{noticeTitle}, content = #{content}
+		SET
+		notice_img = #{noticeImg}, notice_title = #{noticeTitle}, content =
+		#{content}
 		WHERE notice_id = #{noticeId}
 	</update>
 
@@ -64,10 +56,11 @@
 
 	<delete id="deleteNotice" parameterType="NoticeDTO">
 		DELETE FROM Notice
-		WHERE notice_id = #{noticeId}
+		WHERE
+		notice_id = #{noticeId}
 	</delete>
-
-	<select id="getNoticeList" resultType="NoticeDTO">
+	
+		<select id="getNoticeList" resultType="NoticeDTO">
 		SELECT * FROM notice
 		ORDER BY write_date DESC
 		LIMIT #{limit} OFFSET #{offset}
@@ -76,5 +69,5 @@
 	<select id="selectTotalCount" resultType="int">
 		SELECT COUNT(*) FROM notice
 	</select>
-
 </mapper>
+

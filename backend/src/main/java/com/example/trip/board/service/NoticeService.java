@@ -8,13 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.trip.board.dao.NoticeDAO;
 import com.example.trip.board.dto.NoticeDTO;
-import com.example.trip.util.aop.AdminOnly;
-import com.example.trip.util.aop.NoticePagination;
-
-import com.example.trip.board.dto.ReviewDTO;
 import com.example.trip.user.service.UserService;
-import com.example.trip.util.AdminOnly;
-
+import com.example.trip.util.aop.NoticePagination;
 
 @Service
 public class NoticeService {
@@ -22,12 +17,12 @@ public class NoticeService {
 	@Autowired
 	private NoticeDAO ndao;
 	
+
 	@Autowired
 	private NoticePagination noticePagination;
-
+	
 	@Autowired
 	private UserService uservice;
-
 
 	// 공지사항 목록 가져오기
     public List<NoticeDTO> getNoticeList(int page) {
@@ -45,11 +40,12 @@ public class NoticeService {
     public Map<String, Object> getPaginationInfo(int page) {
         return noticePagination.getPageInfo(page);
     }
+    
 
 	public List<NoticeDTO> getListOrderDate() {
 		return ndao.getListOrderDate();
 	}
-
+	
 	// 공지사항 글 1개 가져오기
 	public NoticeDTO showContent(int noticeId) {
 		ndao.incrementViewCount(noticeId);
