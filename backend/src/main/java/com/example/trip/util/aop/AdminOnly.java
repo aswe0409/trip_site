@@ -1,4 +1,4 @@
-package com.example.trip.util;
+package com.example.trip.util.aop;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

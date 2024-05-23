@@ -91,14 +91,11 @@ public class SecurityConfig {
             "/brewery/**",
             "/user/**",
             "/board/**",
+            "/notice/**",
             "/wishlist/**",
             "/review/**",
             "/comment/**",
-            "/notice/**",
-            "/userBoard/**",
-
-            "/board/**"
-
+            "/userBoard/**"
         };
 
     @Bean
