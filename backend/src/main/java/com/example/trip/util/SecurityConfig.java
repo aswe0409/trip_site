@@ -95,10 +95,7 @@ public class SecurityConfig {
             "/review/**",
             "/comment/**",
             "/notice/**",
-            "/userBoard/**",
-
-            "/board/**"
-
+            "/userBoard/**"
         };
 
     @Bean

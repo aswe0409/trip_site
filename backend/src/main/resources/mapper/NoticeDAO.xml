@@ -12,13 +12,13 @@
 		<result column="read_count" property="readCount" />
 	</resultMap>
 
-	<select id="getList" resultMap="noticeInfo">
+	<select id="getList" resultMap="noticeInfo"> 
 		select *
 		from
 		notice
 		order by write_date desc
 	</select>
-	<select id="getListOrderDate" resultMap="noticeInfo">
+	<select id="getListOrderDate" resultMap="noticeInfo"> 
 		select *
 		from
 		notice
@@ -28,7 +28,7 @@
 	<select id="showContent" resultMap="noticeInfo"
 		parameterType="int">
 		SELECT * FROM Notice WHERE
-		notice_id = #{noticeId}
+		notice_id = #{noticeId};
 	</select>
 
 	<insert id="writeNotice" parameterType="NoticeDTO">
@@ -45,7 +45,7 @@
 		SET
 		notice_img = #{noticeImg}, notice_title = #{noticeTitle}, content =
 		#{content}
-		WHERE notice_id = #{notice_id}
+		WHERE notice_id = #{noticeId}
 	</update>
 
 	<update id="incrementViewCount" parameterType="int">
@@ -57,7 +57,17 @@
 	<delete id="deleteNotice" parameterType="NoticeDTO">
 		DELETE FROM Notice
 		WHERE
-		notice_id = #{notice_id}
+		notice_id = #{noticeId}
 	</delete>
+	
+		<select id="getNoticeList" resultType="NoticeDTO">
+		SELECT * FROM notice
+		ORDER BY write_date DESC
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="selectTotalCount" resultType="int">
+		SELECT COUNT(*) FROM notice
+	</select>
 </mapper>
 

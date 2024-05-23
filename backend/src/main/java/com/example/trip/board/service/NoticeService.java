@@ -1,33 +1,50 @@
 package com.example.trip.board.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.trip.board.dao.NoticeDAO;
 import com.example.trip.board.dto.NoticeDTO;
-import com.example.trip.board.dto.ReviewDTO;
 import com.example.trip.user.service.UserService;
-import com.example.trip.util.AdminOnly;
 
 @Service
 public class NoticeService {
 
 	@Autowired
 	private NoticeDAO ndao;
+	
+
+	@Autowired
+	private NoticePagination noticePagination;
+	
 	@Autowired
 	private UserService uservice;
 
 	// 공지사항 목록 가져오기
-	public List<NoticeDTO> getList() {
-		return ndao.getList();
-	}
+    public List<NoticeDTO> getNoticeList(int page) {
+        Map<String, Object> pageInfo = noticePagination.getPageInfo(page);
+        int offset = (int) pageInfo.get("offset");
+        int pageSize = (int) pageInfo.get("pageSize");
+
+        return ndao.getNoticeList(pageSize, offset);
+    }
+
+    public int getTotalNoticeCount() {
+        return ndao.selectTotalCount();
+    }
+
+    public Map<String, Object> getPaginationInfo(int page) {
+        return noticePagination.getPageInfo(page);
+    }
+    
 
 	public List<NoticeDTO> getListOrderDate() {
 		return ndao.getListOrderDate();
 	}
-
+	
 	// 공지사항 글 1개 가져오기
 	public NoticeDTO showContent(int noticeId) {
 		ndao.incrementViewCount(noticeId);
