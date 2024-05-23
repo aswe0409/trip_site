@@ -1,7 +1,8 @@
 package com.example.trip.festival.dto;
 
 public class FestivalDTO {
-	private String titie;
+	private int festivalNo;
+	private String title;
 	private String imgUrl;
 	private String startDate;
 	private String endDate;
@@ -17,10 +18,8 @@ public class FestivalDTO {
 	}
 
 
-	public FestivalDTO(String titie, String imgUrl, String startDate, String endDate, String address, String money,
-			String institution, String telNum, String homePage) {
-		super();
-		this.titie = titie;
+	public FestivalDTO(int festivalNo, String title, String imgUrl, String startDate, String endDate, String address,
+			String money, String institution, String telNum, String homePage) {
 		this.imgUrl = imgUrl;
 		this.startDate = startDate;
 		this.endDate = endDate;
@@ -30,15 +29,22 @@ public class FestivalDTO {
 		this.telNum = telNum;
 		this.homePage = homePage;
 	}
+	
+	public int getFestivalNo() {
+		return festivalNo;
+	}
 
-
-	public String getTitie() {
-		return titie;
+	public void setFestivalNo(int festivalNo) {
+		this.festivalNo = festivalNo;
 	}
 
 
-	public void setTitie(String titie) {
-		this.titie = titie;
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 
