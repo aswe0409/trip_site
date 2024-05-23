@@ -22,9 +22,9 @@ public interface NoticeDAO {
 
     public int incrementViewCount(int noticeId); // 조회수 증가
 
-    public int deleteNotice(int noticeId); // 공지사항 삭제하기
-
     public List<NoticeDTO> getNoticeList(@Param("limit") int limit, @Param("offset") int offset); // 페이징 처리된 공지사항 목록 가져오기
 
     public int selectTotalCount(); // 전체 공지사항 수 조회
+
+	public int deleteNotice(NoticeDTO notice); // 공지사항 삭제하기
 }
