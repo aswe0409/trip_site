@@ -81,12 +81,21 @@ public class SecurityConfig {
             "/swagger-ui.html",
             "/swagger-resources/**",
             "/webjars/**",
+            "/attraction/randomList/**",
+            "/attraction/inRange/**",
+            "/attraction/randomRestaurant/**",
+            "/attraction/getTop3/**",
+            "/festival/**",
             "/attraction/**",
             "/bot/chat/**",
             "/brewery/**",
             "/user/**",
             "/board/**",
-            "/notice/**"
+            "/notice/**",
+            "/wishlist/**",
+            "/review/**",
+            "/comment/**",
+            "/userBoard/**"
         };
 
     @Bean

@@ -12,7 +12,7 @@
 		<result column="read_count" property="readCount" />
 	</resultMap>
 
-	<select id="getList" resultType="NoticeDTO">
+	<select id="getList" resultMap="noticeInfo">
 		select *
 		from notice
 	</select>
@@ -24,6 +24,30 @@
 	<insert id="writeNotice" parameterType="NoticeDTO">
 		INSERT INTO Notice (notice_title, content, user_id)
 		VALUES (#{noticeTitle}, #{content}, #{userId})
+		from
+		notice
+		order by write_date desc
+	</select>
+	<select id="getListOrderDate" resultMap="noticeInfo">
+		select *
+		from
+		notice
+		order by write_date desc limit 5
+	</select>
+
+	<select id="showContent" resultMap="noticeInfo"
+		parameterType="int">
+		SELECT * FROM Notice WHERE
+		notice_id = #{noticeId}
+	</select>
+
+	<insert id="writeNotice" parameterType="NoticeDTO">
+		INSERT INTO Notice
+		(notice_title, content, user_id, write_date)
+		VALUES
+		( #{noticeTitle},
+		#{content},
+		#{userId}, NOW())
 	</insert>
 
 	<update id="updateNotice" parameterType="NoticeDTO">
@@ -38,7 +62,7 @@
 		WHERE notice_id = #{noticeId}
 	</update>
 
-	<delete id="deleteNotice" parameterType="int">
+	<delete id="deleteNotice" parameterType="NoticeDTO">
 		DELETE FROM Notice
 		WHERE notice_id = #{noticeId}
 	</delete>

@@ -12,7 +12,10 @@ public interface NoticeDAO {
 
     public List<NoticeDTO> getList(); // 공지사항 목록 전체 가져오기
 
-    public NoticeDTO showContent(int noticeId); // ID를 직접 받아 처리
+	public List<NoticeDTO> getListOrderDate(); // 공지사항 최근5개 가져오기
+
+	public NoticeDTO showContent(int noticeId); // ID를 직접 받아 처리
+
 
     public int writeNotice(NoticeDTO notice); // 공지사항 글 쓰기
 
@@ -26,3 +29,5 @@ public interface NoticeDAO {
 
     public int selectTotalCount(); // 전체 공지사항 수 조회
 }
+
+
