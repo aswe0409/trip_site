@@ -55,5 +55,4 @@
 		<result column="tel_num" property="telNum"/>
 		<result column="homepage" property="homePage"/>
 	</resultMap>
-	
 </mapper>
